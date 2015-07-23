@@ -16,14 +16,14 @@ router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,tr
   }
   else
   { 
-  	if(usuario == 0 || usuario === "0")
+  	if(usuario === 0 || usuario === "0")
   	{
   		res.render('viewRegistro/registro2',{Rol:rol,Documento:documento});
   	}
   	else
   	{
   		if(req.session.name)res.redirect('/user');
-  		else res.render('index', { Rol: rol });			
+  		else res.render('viewRegistro/registro', { Rol: rol });			
   	}
   }
 });
