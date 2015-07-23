@@ -9,21 +9,21 @@ var ciudad;
 
 /* GET home page. */
 router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,traeDepartamentos,traeMunicipios,function(req, res, next) {
-  if(acueducto === 0 || acueducto === "0")
+  if(acueducto === 0)
   {
   	ciudad = req.query.Dep;// Atrapa la peticion ajax
    	res.render('viewRegistro/registro',{Departamento:departamento,Municipio:municipio,Documento:documento});
   }
   else
   { 
-  	if(usuario === 0 || usuario === "0")
+  	if(usuario === 0)
   	{
   		res.render('viewRegistro/registro2',{Rol:rol,Documento:documento});
   	}
   	else
   	{
   		if(req.session.name)res.redirect('/user');
-  		else res.render('viewRegistro/registro', { Rol: rol });			
+  		else res.render('index', { Rol: rol });			
   	}
   }
 });
