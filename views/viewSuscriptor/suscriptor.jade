@@ -1,0 +1,41 @@
+extends ../layout
+block content
+ div#viewUsers
+ h2 Suscriptores
+ a(href='/viewSuscriptor/addsuscriptor')
+  span(class='glyphicon glyphicon-plus')
+  span  Agregar Suscriptores
+ table(id='tsuscriptor',class='table table-responsive')
+  tr
+   td Identificación Titular
+   td Nombres Titular
+   td Apellidos Titular
+   td.warning Nuid Predio
+   td Regional Predio
+   td Dirección Predio
+   td Clase Predio
+   td Fecha Suscripcion
+   td Eliminar
+   td Detalles
+  - for sus in Suscriptor
+   tr
+    td(style='text-align:right;')= sus.identificacion
+    td= sus.nombre
+    td= sus.apellido
+    td(class='warning',style='text-align:center;')= sus.nuid
+    td= sus.regional
+    td= sus.direccion_predio
+    td= sus.clase_uso
+    td.formatoFecha= sus.fecha_suscripcion
+    td
+     form(method='get', action='/delete/'+sus.nuid+'/suscripcion')
+      input(name='_method', value='DELETE', Type='hidden')
+      button(type='submit',class='btn btn-danger center-block',onclick='return confirm("¿Deseas eliminar la siguiente suscripcion?");')
+       span(class='glyphicon glyphicon-trash') 
+       span  Eliminar
+    td
+     form(method='get', action='/details/'+sus.nuid+'/suscriptor')
+      input(name='_method', value='DELETE', Type='hidden')
+      button(type='submit',class='btn btn-primary center-block')
+       span(class='glyphicon glyphicon-zoom-in') 
+       span  Detalles

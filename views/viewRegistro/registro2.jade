@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type' content='text/html;charset=utf-8')
+    title Ilwi - Software de Facturacion
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='javascripts/jquery.js')
+    script(type='text/javascript', src='javascripts/bootstrap.min.js')
+    script(type='text/javascript', src='javascripts/main.js')
+  body
+    form.loggin(method='POST',acction='/')
+     table(id='tablaregistro', class='table')
+      thead
+       tr
+        td(colspan='2')
+         h3 Administrador Acueducto 
+      tbody
+       tr
+        td Identificacion:
+        td
+         input(name='tb_ide', class='form-control',placeholder='No Identificación')
+       tr
+        td Tipo:
+        td
+         select(name='ddl_tipodoc', class='form-control')
+          - for doc in Documento
+           option(value=''+doc.idt+'')= doc.nomt      
+       tr
+        td Nombre:
+        td
+         input(name='tb_nomu', class='form-control',placeholder='Nombres')
+       tr
+        td Apellido:
+        td 
+         input(name='tb_apeu',class='form-control',placeholder='Apellidos')
+       tr 
+        td Telefono:
+        td
+         input(name='tb_tel',class='form-control',placeholder='Telefono')
+       tr
+        td Email:
+        td
+         input(name='tb_email',class='form-control',placeholder='Email')
+       tr
+        td Password:
+        td
+         input(type='password',name='tb_pass',class='form-control',placeholder='Clave')
+       tr
+        td Rol:
+        td
+         select(name='ddl_rol', class='form-control')
+          - for i in Rol
+           option(value=''+i.ir+'')= i.nr
+       tr
+        td(colspan='2')
+         input(type='submit', value='Registrar', class='btn btn-default btn-lg btn-block')
+      

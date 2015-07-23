@@ -1,0 +1,32 @@
+extends ../layout
+block content
+ div#viewUsers
+ h2 Perfiles
+ a(href='/viewUser/addUsers')
+  span(class='glyphicon glyphicon-plus')
+  span  Agregar Usuarios
+ table(id='tusuario',class='table')
+  tr 
+   td Documento
+   td Identificación
+   td Nombre
+   td Apellido
+   td Telefono
+   td Correo
+   td Rol
+   td Eliminar
+  - for us in Usuario
+   tr
+    td= us.documento
+    td= us.identificacion
+    td= us.nombre
+    td= us.apellido
+    td= us.telefono
+    td= us.correo
+    td= us.nombre_rol
+    td
+     form(method='get', action='/delete/'+us.id_perfil+'/perfil')
+      input(name='_method', value='DELETE', Type='hidden')
+      button(type='submit',class='btn btn-danger center-block',onclick='return confirm("¿Estas seguro de Eliminar este usuario?");')
+       span(class='glyphicon glyphicon-trash') 
+       span  Eliminar Perfil

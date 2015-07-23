@@ -1,0 +1,108 @@
+extends ../layout
+block content 
+ div#addRegional
+  h2 Agregar Regional
+  hr
+  form(method='POST',action='/viewRegion/region')
+   table(id='tregional',class='table')
+    tr
+     td(colspan='2') 
+      input(class='form-control',placeholder=''+Acueducto1[0]._noma+'',disabled)
+      input(name='ddl_acueducto',type='hidden',value=''+Acueducto1[0]._idea+'')
+
+    tr
+     td Departamento
+     td
+      select(id='#SelDepartamento',name='ddl_departamento', class='form-control SelDepartamento')
+       option Selecciona Departamento
+       - for d in Departamento
+        option(value=''+d.codd+'')= d.nomd
+    tr
+     td Municipio
+     td#campoMunicipios
+      select(name='ddl_ciudad', class='form-control ciudad')
+       - for m in Municipio
+        option(value=''+m.codm+'')= m.nomm
+    tr
+     td No Inicial Factura:
+     td
+      input(name='Tb_conf',placeholder='',class='form-control')
+    tr
+     td Ciclo Facturación:
+     td
+      div.row
+       div.col-md-6
+        input(type='radio',name='ciclo',value='1',checked='checked') 
+        span Mensual
+       div.col-md-6
+        input(type='radio',name='ciclo',value='2') 
+        span Bimensual
+      div.row 
+       div.col-md-6
+        input(type='radio',name='ciclo',value='3')
+        span Trimestral  
+       div.col-md-6
+        input(type='radio',name='ciclo',value='6')
+        span Semestral
+      div.row
+       div.col-md-6
+        input(type='radio',name='ciclo',value='12')
+        span Anual
+    tr
+     td Tiempo limite de pago:
+     td
+      div.col-md-4
+       input(type='number',value='5',name='vencimiento',min='5',max='30',class='form-control')
+    tr
+     td(colspan='2')
+      input(type='submit', value='Agregar',class='btn btn-default  btn-lg btn-block')
+
+  table(class='table table-bordered')
+   tr
+    td 
+     h4 Acueducto
+    td 
+     h4 Departamento
+    td 
+     h4 Ciudad
+    td 
+     h4 No Factura
+    td
+     h4 Ciclo Facturacion
+    td
+     h4 Días Pago
+    td 
+     h4 Eliminar
+    td 
+     h4 Tarifas
+   - for rg in Regiones
+    tr
+     td= rg.nombre
+     td= rg.nombre_departamento
+     td= rg.nombre_municipio
+     td= rg.cod_factura
+     if rg.ciclo_facturacion == 1
+      td Mensual
+     else if rg.ciclo_facturacion == 2
+      td Bimensual
+     else if rg.ciclo_facturacion == 3
+      td Trimestral
+     else if rg.ciclo_facturacion == 6
+      td Semestral 
+     else if rg.ciclo_facturacion == 12
+      td Anual
+     td= rg.dias_vencimiento
+
+     td
+      form(method='get', action='/delete/'+rg.id_region+'/region')
+        input(name='_method', value='DELETE', Type='hidden')
+        button(type='submit',class='btn btn-danger center-block',onclick='return confirm("¿Estas seguro de Eliminar esta Regional?");')
+         span(class='glyphicon glyphicon-trash') 
+         span  Eliminar Region
+     td
+      form(method='get', action='/add/'+rg.id_region+'/tarifa')
+        input(name='_method', value='ADDTARIFA', Type='hidden')
+        button(type='submit',class='btn btn-success center-block')
+         span(class='glyphicon glyphicon-plus')
+         span  Agregar Tarifa
+   

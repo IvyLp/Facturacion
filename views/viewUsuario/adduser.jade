@@ -1,0 +1,69 @@
+extends ../layout
+block content
+ div#viewUsers
+ h2 Agregar Usuario
+ a(href='/viewUser',style='margin:-60px 10px;float:right;')
+  span(class='glyphicon glyphicon-menu-left')
+  span  Regresar
+ hr
+ form(id='addUser',method='POST',action='/viewUser/addUsers')
+  table(id='tusuario1',class='table',width='400')
+   thead
+    tr
+     td Identificacion
+     td 
+      input(id='existeUsuario',name='tb_identificacion',placeholder='Identificacion', class='form-control')
+   tbody#thUser
+    tr
+     td Tipo:
+     td
+      if User
+       input(placeholder=''+User.docu+'',class='form-control',disabled)
+       input(type='hidden',value='0',name='ddl_tipodoc')
+      else 
+       select(name='ddl_tipodoc', class='form-control')
+        - for doc in Documento
+         option(value=''+doc.idt+'')= doc.nomt   
+    tr
+     td Nombres:
+     td#ajNombre
+      if User
+       input(placeholder=''+User.nomb+'', class='form-control',disabled)
+      else
+       input(name='tb_nombre',placeholder='Nombres', class='form-control') 
+    tr
+     td Apellidos:
+     td#ajApellido
+      if User
+       input(placeholder=''+User.apell+'', class='form-control',disabled) 
+      else 
+       input(name='tb_apellido',placeholder='Apellidos', class='form-control')  
+    tr
+     td Telefono:
+     td#ajTelefono
+      if User
+       input(placeholder=''+User.tel+'', class='form-control',disabled) 
+      else
+       input(name='tb_telefono',placeholder='Telefono', class='form-control')
+    tr
+     td Correo:
+     td#ajCorreo
+      if User
+       input(placeholder=''+User.corr+'', class='form-control',disabled) 
+      else
+       input(name='tb_correo',placeholder='Correo', class='form-control')
+    tr
+     td Rol:
+     td
+      select(name='ddl_rol', class='form-control')
+       - for r in Rol
+        option(value=''+r.ir+'')= r.nr
+    tr
+     td(colspan='2')
+      button(type='submit',class='btn btn-success',style='width: 100%;position: relative;top: 10px;')
+       span(class='glyphicon glyphicon-saved')
+       span  Guardar
+      if User
+       a(href='/delete/'+User.ident+'/usuario',class='btn bth-danger',style='width: 100%;position:relative;top:20px;',onclick='return confirm("¿Estas seguro de Eliminar este Usuario?");')
+        span(class='glyphicon glyphicon-trash')
+        span  Eliminar

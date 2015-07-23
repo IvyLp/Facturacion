@@ -1,0 +1,122 @@
+extends ../layout
+block content 
+ h2 Información Empresa
+ div.row
+  div.col-md-12
+   h2
+    span(class='label label-default') Información Acueducto
+   br
+   table(id='tabla1' class='table table-hover')
+    tr 
+     td #{Empresa.documento}
+     td #{Empresa.identificacion}
+    tr
+     td Nombre
+     td #{Empresa.nombre}
+    tr
+     td Departamento
+     td #{Empresa.nombre_departamento}
+    tr
+     td Ciudad
+     td #{Empresa.nombre_municipio}
+    tr
+     td Direccion
+     td #{Empresa.direccion}
+    tr
+     td Telefono
+     td #{Empresa.telefono}  
+   input(id='me' type='submit', value='Modificar', class='btn btn-default' style='float:right;')
+
+   // --------------------------------------------------------------  
+   form(id='modificarEmpresa' method='POST',action='/viewEmpresa')
+    input(type='hidden',value='1',name='tb_elige')
+    table(class='table table-hover')
+     tr 
+      td #{Empresa.documento}
+      td 
+       input(name='tb_ideEA',class='form-control',value='#{Empresa.identificacion}',type='hidden')
+       input(name='tb_ideE',class='form-control',value='#{Empresa.identificacion}')
+     tr
+      td Nombre
+      td 
+       input(name='tb_nomE',class='form-control',value='#{Empresa.nombre}')
+     tr
+      td Departamento:
+      td
+       select(name='ddl_departamento', class='form-control SelDepartamento')
+        option Selecciona Departamento
+        - for d in Departamento
+         option(value=''+d.codd+'')= d.nomd
+     tr
+      td Ciudad
+      td#campoMunicipios
+       select(name='ddl_ciudad', class='form-control ciudad')
+        - for m in Municipio
+         option(value=''+m.codm+'')= m.nomm
+     tr
+      td Direccion
+      td
+       input(name='tb_dirE',class='form-control',value='#{Empresa.direccion}')
+     tr
+      td Telefono
+      td 
+       input(name='tb_telE',class='form-control',value='#{Empresa.telefono}')
+     
+    button(type='submit',class='btn btn-success',style='float:right;')
+        span(class='glyphicon glyphicon-floppy-saved')
+        span  Guardar 
+   // ------------------------------------------------------------------
+   // ------------------------------------------------------------------
+   br
+   h2
+    span(class='label label-default') Información Representante
+   br
+   table(id='tabla2', class='table table-hover')
+    tr 
+     td #{Representante.documento}
+     td #{Representante.identificacion}
+    tr
+     td Nombres
+     td #{Representante.nombre}
+    tr
+     td Apellidos
+     td #{Representante.apellido}
+    tr
+     td Telefono
+     td #{Representante.telefono}
+    tr
+     td Correo
+     td #{Representante.correo}
+   input(id='mr' type='submit', value='Modificar', class='btn btn-default' style='float:right;')   
+   
+   form(id='modificarRepresentante' method='POST',action='/viewEmpresa')
+    input(type='hidden',value='2',name='tb_elige')
+    table(class='table table-hover')
+     tr 
+      td #{Representante.documento}
+      td 
+       input(name='tb_ideRA',class='form-control',value='#{Representante.identificacion}',type='hidden')
+       input(name='tb_ideR',class='form-control',value='#{Representante.identificacion}')
+     tr
+      td Nombres
+      td 
+       input(name='tb_nomR',class='form-control',value='#{Representante.nombre}')
+     tr
+      td Apellidos
+      td
+       input(name='tb_apeR',class='form-control',value='#{Representante.apellido}')
+     tr
+      td Telefono
+      td
+       input(name='tb_telR',class='form-control',value='#{Representante.telefono}')
+     tr
+      td Correo
+      td
+       input(name='tb_corR',class='form-control',value='#{Representante.correo}')
+
+    button(type='submit',class='btn btn-success',style='float:right;')
+        span(class='glyphicon glyphicon-floppy-saved')
+        span  Guardar
+
+ 
+   

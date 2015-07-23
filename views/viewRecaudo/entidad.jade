@@ -1,0 +1,61 @@
+extends ../layout
+block content
+ div#addRecaudo
+  h2 Agregar Entidad Recaudadora
+  hr
+  form(method='POST', action='/viewRecaudo')
+   table(id='tregional',class='table')
+    tr
+     td Nombre Entidad:
+     td 
+      input(name='tb_nombree',class='form-control')
+    tr
+     td Tipo de Cuenta:
+     td
+      div.row
+       div.col-md-6
+        input(type='radio',name='rd_tipcuenta',value='AHORRO')
+        span AHORRO
+       div.col-md-6
+        input(type='radio',name='rd_tipcuenta',value='CORRIENTE')
+        span CORRIENTE
+    tr
+     td Numero de Cuenta:
+     td
+      input(name='tb_numerocuenta',class='form-control')
+    tr
+     td Saldo
+     td
+      div.form-group
+       div.input-group 
+        div.input-group-addon $
+        input(name='tb_saldo',class='form-control',placeholder='0',style='text-align:right')
+    tr
+     td(colspan='2')
+      input(type='submit', value='Agregar',class='btn btn-default  btn-lg btn-block')
+  table(class='table table-bordered')
+   thead
+    tr
+     td
+      h4 Nombre Entidad Recaudadora
+     td
+      h4 Tipo Cuenta
+     td
+      h4 Numero de Cuenta
+     td
+      h4 Saldo 
+     td
+      h4 Eliminar Entidad
+   tbody
+    - for en in Entidad
+     tr
+      td= en.nome
+      td= en.tipe
+      td= en.nume
+      td= en.sale
+      td
+       form(method='get', action='/delete/'+en.idee+'/entidad')
+        input(name='_method', value='DELETE', Type='hidden')
+        button(type='submit',class='btn btn-danger center-block',onclick='return confirm("¿Estas seguro de Eliminar esta Entidad Recuadadora?");')
+         span(class='glyphicon glyphicon-trash') 
+         span  Eliminar Entidad

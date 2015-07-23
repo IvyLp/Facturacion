@@ -1,0 +1,68 @@
+extends ../layout
+block content
+ div#detailsUsers
+ h2 Detalles Suscriptor
+ a(href='/viewSuscriptor',style='margin:-60px 10px;float:right;')
+  span(class='glyphicon glyphicon-menu-left')
+  span  Regresar
+ hr
+ h3 Titular
+ p(style='text-align:center;font-size:14pt;')
+  strong #{Suscripcion.documento}
+  span  #{Suscripcion.identificacion}
+ p(style='text-align:center;font-size:14pt;') 
+  strong Nombres:
+  span  #{Suscripcion.nombre} #{Suscripcion.apellido}
+ p(style='text-align:center;font-size:14pt;')
+  strong Fecha de Nacimiento:
+  span.formatoFecha  #{Suscripcion.fecha_nac}
+ p(style='text-align:center;font-size:14pt;')
+  strong Departamento Residencia:
+  span  #{Suscripcion.nombre_departamento}
+ p(style='text-align:center;font-size:14pt;')
+  strong Ciudad Residencia:
+  span  #{Suscripcion.nombre_municipio}
+ p(style='text-align:center;font-size:14pt;')
+  strong Dirección Residencia:
+  span  #{Suscripcion.direccion}
+ p(style='text-align:center;font-size:14pt;')
+  strong Telefono:
+  span  #{Suscripcion.telefono}
+ p(style='text-align:center;font-size:14pt;')
+  strong Correo:
+  span  #{Suscripcion.correo}
+ hr
+ h3 Suscripcion
+ p(style='text-align:center;font-size:14pt;')
+  strong Nuid:
+  span  #{Suscripcion.nuid}
+ p(style='text-align:center;font-size:14pt;')
+  strong Contrato:
+  span  #{Suscripcion.contrato}
+ p(style='text-align:center;font-size:14pt;')
+  strong Igac
+  span  zona: #{Suscripcion.zona_igac}  sector: #{Suscripcion.sector_igac}  manzana/vereda #{Suscripcion.manz_vere_igac}  condicion: #{Suscripcion.condicion_igac}  no predial: #{Suscripcion.no_predial_igac}
+ p(style='text-align:center;font-size:14pt;')
+  strong Regional:
+  span  #{Suscripcion.regional}
+ p(style='text-align:center;font-size:14pt;') 
+  strong Direccion:
+  span  #{Suscripcion.direccion_predio}
+ p(style='text-align:center;font-size:14pt;')
+  strong Tarifa Asignada:
+  span  #{Suscripcion.clase_uso}
+ p(style='text-align:center;font-size:14pt;')
+  strong Unidad Residencial Multiusuario:
+  span  #{Suscripcion.urm}
+ p(style='text-align:center;font-size:14pt;')
+  strong Unidad No Residencial Multiusuario:
+  span  #{Suscripcion.urnm}
+ p(style='text-align:center;font-size:14pt;')
+  strong Hogar Sustituto:
+  if Suscripcion.hogar_sustituto
+   span  Si
+  else
+   span  No
+ p(style='text-align:center;font-size:14pt;')
+  strong Fecha de Suscripcion:
+  span.formatoFecha #{Suscripcion.fecha_suscripcion}

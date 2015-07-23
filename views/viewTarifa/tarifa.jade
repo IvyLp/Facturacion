@@ -1,0 +1,123 @@
+extends ../layout
+block content
+ div#addTarifa
+  div.row
+   div.col-md-12
+    h4 #{Region.nombre_departamento} / #{Region.nombre_municipio}
+    div 
+     a(href='/viewRegion/region',style='margin:-35px 10px;float:right;')
+      span(class='glyphicon glyphicon-menu-left')
+      span  Regresar  
+  hr(style='margin: 0px;')   
+  div.row
+   div.col-md-5
+    h3 Agregar Tarifas
+    form(method='POST',action='/add/'+Region.id_region+'/tarifa')
+     table(id='ttarifa',class='table')
+      tr
+       td 
+        b Clase de Uso:
+       td
+        select(name='ddl_claseu',class='form-control')
+         - for c in Clase
+          option(value=''+c.cod_clase+'')= c.nomcre_clase
+      tr
+       td 
+        b Cargo Fijo:
+       td
+        div.form-group
+         div.input-group 
+          div.input-group-addon $
+          input(name='tb_cf',class='form-control',placeholder='0',style='text-align:right')
+      tr
+       td
+        b Basico:
+       td
+        div.form-group
+         div.input-group 
+          div.input-group-addon $
+          input(name='tb_bs',class='form-control',placeholder='0',style='text-align:right')
+      tr
+       td
+        b Complementario:
+       td
+        div.form-group
+         div.input-group 
+          div.input-group-addon $
+          input(name='tb_com',class='form-control',placeholder='0',style='text-align:right')
+      tr
+       td
+        b Suntuario: 
+       td
+        div.form-group
+         div.input-group 
+          div.input-group-addon $
+          input(name='tb_sun',class='form-control',placeholder='0',style='text-align:right')
+      tr 
+       td
+        b Factor Subsidio/Contribucion:
+       td
+        div.form-group
+         div.input-group 
+          div.input-group-addon %
+          input(name='tb_fact',class='form-control',placeholder='0.0',style='text-align:right')
+      tr
+       td 
+        b Tasa de interes Mora:
+       td
+        div.form-group
+         div.input-group 
+          div.input-group-addon %
+          input(name='tb_intm',class='form-control',placeholder='0.0',style='text-align:right')
+      tr
+       td
+        b Costos Tasas Ambientales:
+       td
+        div.form-group
+         div.input-group 
+          div.input-group-addon %
+          input(name='tb_cta',class='form-control',placeholder='0.0',style='text-align:right')
+      tr
+       td 
+       td
+        button(type='submit',class='btn btn-success')
+         span(class='glyphicon glyphicon-plus')
+         span  Agregar Tarifas
+   div.col-md-7
+    h3 Tarifas Creadas
+    -for t in Tarifa
+     button(type='button',style='width:100%;margin:5px 0;', class='btn btn-primary', data-toggle='modal', data-target='#myModal'+t._cu)=t._nu
+     div(class='modal fade', id='myModal'+t._cu, tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      div(class='modal-dialog modal-sm')
+       div.modal-content
+        div.modal-header
+         button(type='button',class='close',data-dismiss='modal',aria-label='Close')
+          span(aria-hidden='true')&times;
+         h3=t._nu
+        div.modal-body
+         h4 Cargo Fijo:
+          span(style='float:right;')= t._cf
+         hr
+         h4 Basico:
+          span(style='float:right;')= t._bs
+         hr 
+         h4 Complementario:
+          span(style='float:right;')= t._cm
+         hr
+         h4 Suntuario:
+          span(style='float:right;')= t._su
+         hr
+         h4 Subsidio/Contribución:
+          span(style='float:right;')= t._fa+'%'
+         hr
+         h4 Tasa de interes Mora:
+          span(style='float:right;')= t._vi+'%'
+         hr
+         h4 CTA:
+          span(style='float:right;')= t._ct+'%'
+        div.modal-footer
+         form(method='get',action='/delete/'+t._id+'/tarifa')
+          input(type='hidden',name='tb_regional',value=''+Region.id_region+'')
+          button(type='submit',class='btn btn-danger',onclick='return confirm("¿Estas seguro de eliminar esta Tarifa?");') Eliminar
+   
+

@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type' content='text/html;charset=utf-8')
+    title Ilwi
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='javascripts/jquery.js')
+    script(type='text/javascript', src='javascripts/bootstrap.min.js')
+    script(type='text/javascript', src='javascripts/main.js')
+  body
+    form.loggin(method='POST',acction='/')
+     table.table
+      thead
+       tr
+        td(colspan='2')
+         h3 Iniciar Sesion
+      tbody
+       tr
+        td Usuario:
+        td
+         input(name='tb_usuario', class='form-control')
+       tr
+        td Clave:
+        td
+         input(type='password',name='tb_clave',class='form-control')
+       tr
+        td Rol:
+        td
+         select(name='ddl_rol', class='form-control')
+          - for i in Rol
+           option(value=''+i.ir+'')= i.nr
+       tr
+        td
+         small Olvido Clave
+        td
+         input(type='submit', value='Iniciar Sesion', class='btn btn-default')
+
+

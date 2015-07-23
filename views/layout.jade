@@ -1,0 +1,75 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type' content='text/html;charset=utf-8')
+    title Ilwi - Software de Facturacion
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='/javascripts/jquery.js')
+    script(type='text/javascript', src='/javascripts/bootstrap.min.js')
+    script(type='text/javascript', src='/javascripts/main.js')
+  body
+   div.container-fluid
+    div.row
+     div(id='header',class='col-md-12')
+      div.col-md-6
+       h4 Software Facturación Acueducto
+      div.col-md-4
+       span(class='glyphicon glyphicon-user iu')
+       div #{Nombre} #{Apellido}
+      div.col-md-2
+       a(href='/Logoff') Cerrar Sesion
+    div.row
+     div(id='aside',class='col-md-2')
+      div.row
+       div(id='facturacion',class='col-md-12 botones_nav')
+        span(class='glyphicon glyphicon-list-alt')  
+        span  FACTURACION
+       ul.navegacion
+        li
+         a(href='/viewConsumos') Consumos
+      div.row
+       div(id='suscriptores',class='col-md-12 botones_nav')
+        span(class='glyphicon glyphicon-home')  
+        span  SUSCRIPTORES
+       ul.navegacion
+        li
+         a(href='/viewSuscriptor') Suscripción
+      div.row
+       div(id='estadisticas',class='col-md-12 botones_nav')
+        span(class='glyphicon glyphicon-piggy-bank')  
+        span  RECAUDOS
+       ul.navegacion
+        li 
+         a(href='/viewRecaudo') Entidades
+        li Pagos 
+      div.row
+       div(id='empresa', class='col-md-12 botones_nav')
+        span(class='glyphicon glyphicon-map-marker')  
+        span  REGIONALES
+       ul.navegacion
+        li 
+         a(href='/viewRegion/region') Regional
+      div.row
+       div(id='configuracion',class='col-md-12 botones_nav')
+        span(class='glyphicon glyphicon-cog')  
+        span  CONFIGURACION
+       ul.navegacion
+        li
+         a(href='/viewEmpresa',) Empresa
+        li 
+         a(href='/viewUser') Usuarios
+      div.row
+       div(id='manual', class='col-md-12 botones_nav')
+        span(class='glyphicon glyphicon-book')  
+        span  MANUAL
+       ul.navegacion
+        li Manual de Instrucciones 
+     div(id='section' class='col-md-10')
+      div.row
+       div(id='titulo',class='col-md-12')
+        span(class='glyphicon glyphicon-tint sp')
+        span #{Acueducto}
+      div.row
+       div.col-md-12   
+        block content

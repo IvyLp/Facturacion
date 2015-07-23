@@ -1,0 +1,223 @@
+extends ../layout
+block content
+ div#addSuscriptor
+ h2 Agregar Suscriptor
+ a(href='/viewSuscriptor',style='margin:-60px 10px;float:right;')
+  span(class='glyphicon glyphicon-menu-left')
+  span  Regresar
+ hr
+ div.row
+  form(id='addSuscriptor',method='POST',action='/viewSuscriptor/addSuscriptor')
+   div.col-md-4
+    h4 Información Titular
+    table(class='table')
+     thead
+      tr
+       td Identificación
+       td
+        input(id='existeSuscriptor',name='tb_identificacions',placeholder='Identificacion',class='form-control')
+     tbody#thUser
+      tr
+       td Tipo:
+       td
+        if Titular
+         input(placeholder=''+Titular.docu+'',class='form-control',disabled)
+         input(type='hidden',value='0',name='ddl_tipodocs')
+        else
+         select(name='ddl_tipodocs', class='form-control')
+          - for doc in Documento
+           option(value=''+doc.idt+'')= doc.nomt
+      tr
+       td Nombres:
+       td
+        if Titular
+         input(placeholder=''+Titular.nomb+'', class='form-control',disabled)
+        else
+         input(name='tb_nombres',placeholder='Nombres', class='form-control') 
+      tr
+       td Apellidos:
+       td
+        if Titular
+          input(placeholder=''+Titular.apell+'', class='form-control',disabled)
+        else
+         input(name='tb_apellidos',placeholder='Apellidos', class='form-control')
+      tr
+       td Fecha Nacimiento:
+       td
+        if Titular
+         input(placeholder=''+Titular.nfec+'', class='form-control',disabled)
+        else
+         input(name='tb_fechas',placeholder='aaaa-mm-dd',class='form-control')
+      tr
+       td Departamento correspondencia:
+       td
+        if Titular
+         input(placeholder=''+Titular.dep+'', class='form-control',disabled)
+        else
+         select(id='SelDepartamento',name='ddl_departamentos', class='form-control SelDepartamento')
+          option Selecciona Departamento
+          - for d in Departamento
+           option(value=''+d.codd+'')= d.nomd
+      tr
+       td Municipio correspondencia:
+       td#campoMunicipios
+        if Titular
+         input(placeholder=''+Titular.mun+'', class='form-control',disabled)
+        else
+         select(name='ddl_ciudads', class='form-control ciudad')
+          - for m in Municipio
+           option(value=''+m.codm+'')= m.nomm  
+      tr
+       td Direccion correspondencia:
+       td
+        if Titular
+         input(placeholder=''+Titular.dir+'', class='form-control',disabled)
+        else
+         input(name='tb_direccions',placeholder='Direccion', class='form-control')
+      tr
+       td Telefono:
+       td
+        if Titular
+         input(placeholder=''+Titular.tel+'', class='form-control',disabled)
+        else
+         input(name='tb_telefonos',placeholder='Telefono', class='form-control')
+      tr
+       td Correo:
+       td
+        if Titular
+         input(placeholder=''+Titular.corr+'', class='form-control',disabled)
+        else
+         input(name='tb_correos',placeholder='Correos', class='form-control')
+      if Titular
+       tr
+        td(colspan=2)
+         a(href='/delete/'+Titular.ident+'/titular', onclick='return confirm("¿Estas seguro de Eliminar el titular?");') 
+          span(class='glyphicon glyphicon-trash')
+          span  Eliminar
+   div.col-md-4
+    h4 Información Predio
+    table(class='table')
+     thead
+      tr   
+       td Nuid:
+       td
+        input(name='tb_nuid',placeholder='', class='form-control ch', data-alert='alert1')
+        div#alert1 
+         if Nuid
+          div(class='alert alert-danger alert-dismissible fade in')
+           button(type='button',class='close',data-dismiss='alert',aria-label='Close')
+            span(aria-hidden='true') &times;
+           p Ya existe un nuid asociado con este numero      
+     tbody
+      tr
+       td Contrato:
+       td
+        input(name='tb_contrato',placeholder='', class='form-control ch', data-alert='alert2')
+        div#alert2
+         if Contrato
+          div(class='alert alert-danger alert-dismissible fade in')
+           button(type='button',class='close',data-dismiss='alert',aria-label='Close')
+            span(aria-hidden='true') &times;
+           p Ya existe un contrato asociado con este numero
+      tr 
+       td Igac:
+       td
+        div.row
+         div.col-md-6
+          input(name='tb_zonI',placeholder='Zona',class='form-control igac')
+         div.col-md-6
+          input(name='tb_secI',placeholder='Sector', class='form-control igac')
+        div.row
+         div.col-md-6
+          input(name='tb_manI',placeholder='Manzana/Vereda',class='form-control igac')
+         div.col-md-6
+          input(name='tb_conI',placeholder='Condicion',class='form-control igac')
+        div.row
+         div.col-md-6
+          input(name='tb_npredial',placeholder='No Predial', class='form-control igac')
+        div#alert3
+         if Igac
+          div(class='alert alert-danger alert-dismissible fade in')
+           button(type='button',class='close',data-dismiss='alert',aria-label='Close')
+            span(aria-hidden='true') &times;
+           p Ya existe un suscriptor con esta nomenclatura Igac
+      tr
+       td Unidad Residencial Multiusuario:
+       td
+        div.col-md-6
+         input(type="checkbox",name="Ch_urm",value="false",class='form-control check')
+        div.col-md-6 
+         input(type='number',name='tb_urm',placeholder='cant',class='form-control esconde', style='margin: 3px 0px;',min='0',value='0')
+      tr
+       td Unidad No Residencial Multiusuario:
+       td
+        div.col-md-6
+         input(type="checkbox",name="Ch_urm",value="false",class='form-control check')
+        div.col-md-6
+         input(type='number',name='tb_unrm',placeholder='cant',class='form-control esconde', style='margin: 3px 0px;',min='0',value='0')
+      tr
+       td Hogar Sustituto:
+       td 
+        div.col-md-6
+         input(type='radio',name='rd_h',value='0',checked='checked') 
+         span  No
+        div.col-md-6
+         input(type='radio',name='rd_h',value='1')
+         span  Si
+      tr
+       td Region:
+       td
+        select(name='ddl_region', class='form-control SelRegion')
+         option Selecciona Region
+         - for r in Region
+          option(value=''+r.id_region+'')= r.nombre_municipio + ' / ' + r.nombre_departamento
+      tr
+       td Direccion Servicio Predio:
+       td
+        input(name='tb_direccions2',placeholder='', class='form-control')
+      tr
+       td Tarifa:
+       td#campoTarifas
+        select(name='ddl_tarifa', class='form-control')
+         - for t in Tarifa
+          option(value=''+t._id+'')= t._nu
+      tr
+       td Fecha de Registro
+       td 
+        input(name='tb_fecha',placeholder='aaaa-mm-dd', class='form-control')
+   div.col-md-4
+    h4 Informacion Medidor
+    table(class='table')
+     thead
+      tr
+       td Posee Medidor?
+       td
+        input(type='checkbox',name='Ch_mdd',class='form-control checkmedidor')
+     tbody#infoMedidor
+      tr
+       td Codigo Medidor
+       td
+        input(id='existeMedidor',name='tb_medidor',placeholder='Codigo Medidor',class='form-control infomedidor', disabled)
+      tr
+       td Marca Medidor
+       td
+        input(name='tb_marca',placeholder='Marca Medidor',class='form-control infomedidor', disabled)
+      tr
+       td Fecha Instalación
+       td
+        input(name='tb_finstalacion',placeholder='AAAA-MM-DD',class='form-control infomedidor', disabled)
+      tr
+       td
+       td
+        button(type='submit',class='btn btn-success',style='float:right;')
+         span(class='glyphicon glyphicon-saved')
+         span Guardar Suscriptor
+
+        
+      
+       
+
+  
+
+
+

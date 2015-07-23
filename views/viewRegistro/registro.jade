@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type' content='text/html;charset=utf-8')
+    title Ilwi - Software de Facturacion
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='javascripts/jquery.js')
+    script(type='text/javascript', src='javascripts/bootstrap.min.js')
+    script(type='text/javascript', src='javascripts/main.js')
+  body
+    form.loggin(method='POST',acction='/')
+     table(id='tablaregistro', class='table')
+      thead
+       tr
+        td(colspan='2')
+         h3 Registro Acueducto
+      tbody
+       tr
+        td Identificacion:
+        td
+         input(name='tb_nit', class='form-control',placeholder='Identificación Acueducto')
+       tr
+        td Tipo:
+        td
+         select(name='ddl_tipodoc', class='form-control')
+          - for doc in Documento
+           option(value=''+doc.idt+'')= doc.nomt      
+       tr
+        td Nombre:
+        td
+         input(name='tb_nombreacu', class='form-control',placeholder='Nombre Acueducto')
+       tr
+        td Departamento:
+        td
+         select(name='ddl_departamento', class='form-control SelDepartamento')
+          option Selecciona Departamento
+          - for d in Departamento
+           option(value=''+d.codd+'')= d.nomd
+       tr
+        td Ciudad:
+        td#campoMunicipios
+         select(name='ddl_ciudad', class='form-control ciudad')
+          - for m in Municipio
+           option(value=''+m.codm+'')= m.nomm
+       tr
+        td Dirección:
+        td 
+         input(name='tb_dir',class='form-control',placeholder='Dirección Acueducto')
+       tr 
+        td Telefono:
+        td
+         input(name='tb_tel',class='form-control',placeholder='Telefono Acueducto') 
+       tr
+        td(colspan='2')
+         input(type='submit', value='Siguiente', class='btn btn-default  btn-lg btn-block')
