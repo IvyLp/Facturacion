@@ -8,7 +8,7 @@ var ciudad;
 
 
 /* GET home page. */
-router.get('/',nocache,traeRoles,traeDocumentos,traeDepartamentos,traeMunicipios,existeAcueducto,existeUsuario,function(req, res, next) {
+router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,traeDepartamentos,traeMunicipios,function(req, res, next) {
   if(acueducto == 0)
   {
   	ciudad = req.query.Dep;// Atrapa la peticion ajax
