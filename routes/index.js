@@ -119,7 +119,7 @@ function existeAcueducto(req,res,next)
 	pg.connect(conString,function(err,client,done){
 		client.query('SELECT * FROM SP_EXISTE_ACUEDUCTO()',function(err,result){
 			//try{acueducto = result.rows[0].existe;}  //Local
-			try{acueducto = result.rows[0]}	   //Heroku
+			try{acueducto = result.rows[0].sp_existe_acueducto;}	   //Heroku
 			catch(e){console.error(e);}
 			finally{done();next();}
 		});
