@@ -1,3 +1,3 @@
-module.exports = "postgres://postgres:ROOT@localhost:5433/facturacion";
-//module.exports = "postgres://syequnbunmbolj: c00Ik-H_oT0AtqWFwSceFQcWDo@ec2-107-21-125-143.compute-1.amazonaws.com/ddf8hkev7re3s5";
+//module.exports = "postgres://postgres:ROOT@localhost:5433/facturacion";
+module.exports = "postgres://mgmpomhqdmgqzr:UZycjjcESqfeqJB9ESyOqaHZsy@ec2-107-20-178-83.compute-1.amazonaws.com:5432/dbmqusatndpf4a";
 
