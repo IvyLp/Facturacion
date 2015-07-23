@@ -9,7 +9,7 @@ var ciudad;
 
 /* GET home page. */
 router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,traeDepartamentos,traeMunicipios,function(req, res, next) {
-  if(acueducto === 0)
+  if(acueducto = 0)
   {
   	ciudad = req.query.Dep;// Atrapa la peticion ajax
    	res.render('viewRegistro/registro',{Departamento:departamento,Municipio:municipio,Documento:documento});
