@@ -9,7 +9,7 @@ var ciudad;
 
 /* GET home page. */
 router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,traeDepartamentos,traeMunicipios,function(req, res, next) {
-  if(acueducto = 0)
+  if(acueducto === 0)
   {
   	ciudad = req.query.Dep;// Atrapa la peticion ajax
    	res.render('viewRegistro/registro',{Departamento:departamento,Municipio:municipio,Documento:documento});
@@ -23,7 +23,7 @@ router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,tr
   	else
   	{
   		if(req.session.name)res.redirect('/user');
-  		else res.render('index', { Rol: rol });			
+  		else res.render('index', { Rol: rol, Acu:acueducto, Usu:usuario });			
   	}
   }
 });
