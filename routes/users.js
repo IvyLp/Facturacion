@@ -17,9 +17,7 @@ router.get('/user/Admin',nocache,muestraInformacion, function(req, res, next) {
   if(req.session.name)
   {
   	res.render('viewUser/admin',{
-                                  Nombre:informacion._nomu,
-                                  Apellido:informacion._apeu,
-                                  Acueducto:informacion._noma
+                                  Session:informacion
                                 });
   }
   else
@@ -43,7 +41,7 @@ function direccionaPerfil(req,res,next)
 {
   pg.connect(conString,function(err,client,done){
     client.query('SELECT * FROM SP_TRAE_RPERFIL($1)',[req.session.name],function(err,result){
-      try{dPerfil= result.rows[0].rl;}
+      try{dPerfil= result.rows[0].sp_trae_rperfil;}
       catch(e){console.error(e);}
       finally{done();next();}
     });

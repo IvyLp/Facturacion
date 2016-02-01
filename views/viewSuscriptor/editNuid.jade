@@ -1,0 +1,75 @@
+extends ../layout
+block content
+    h1 Editar Nuid /
+        span(style='color:#cecece;') #{Suscripcion.nombre} #{Suscripcion.apellido}
+    a(href='/viewSuscriptor',style='margin:-60px 10px;float:right;')
+        span(class='glyphicon glyphicon-menu-left')
+        span  Regresar
+    hr
+    form(method='POST',action='/edit/#{Suscripcion.nuid}/nuid')
+        table(id='tregional',class='table')
+            tr
+                td Nuid
+                td(colspan='4')
+                    input(type='text',value='#{Suscripcion.nuid}',class='form-control')
+            tr
+                td Contrato
+                td(colspan='4')
+                    input(type='text',value='#{Suscripcion.contrato}',class='form-control')
+            tr
+                td Igac
+                td
+                    input(type='text',value='#{Suscripcion.sector_igac}',class='form-control')
+                td
+                    input(type='text',value='#{Suscripcion.manz_vere_igac}',class='form-control')
+                td
+                    input(type='text',value='#{Suscripcion.condicion_igac}',class='form-control')
+                td
+                    input(type='text',value='#{Suscripcion.no_predial_igac}',class='form-control')
+            tr
+                td Urm
+                td(colspan='4')
+                    div.col-md-6
+                        input(type="checkbox",name="Ch_urm",value="false",class='form-control check')
+                    div.col-md-6
+                        input(type='number',name='tb_urm',placeholder='cant',class='form-control esconde', style='margin: 3px 0px;',min='0',value='0')
+            tr
+                td Unrm
+                td(colspan='4')
+                    div.col-md-6
+                        input(type="checkbox",name="Ch_urm",value="false",class='form-control check')
+                    div.col-md-6
+                        input(type='number',name='tb_unrm',placeholder='cant',class='form-control esconde', style='margin: 3px 0px;',min='0',value='0')
+            tr
+                td Hogar Sustituto
+                td(colspan='4')
+                    div.col-md-6
+                        input(type='radio',name='rd_h',value='0',checked='checked')
+                        span  No
+                    div.col-md-6
+                        input(type='radio',name='rd_h',value='1')
+                        span  Si
+            tr
+                td Regional
+                td(colspan='4')
+                    select(name='ddl_region', class='form-control SelRegion')
+                        option Selecciona Region
+                        - for r in Region
+                            option(value='' + r.id_region + '')= r.nombre_municipio + ' / ' + r.nombre_departamento
+            tr
+                td Direccion Predio
+                td(colspan='4')
+                    input(type='text',value='#{Suscripcion.direccion_predio}',class='form-control')
+            tr
+                td Tarifa
+                td(colspan='4' id='campoTarifas')
+                    select(name='ddl_tarifa', class='form-control')
+                        - for t in Tarifa
+                            option(value='' + t._id + '')= t._nu
+            tr
+                td Fecha de Registro
+                td(colspan='4')
+                    input(type='text',value='#{Suscripcion.fecha_suscripcion}',class='form-control formatoFecha2')
+            tr
+                td(colspan='5')
+                    input(type='submit', value='Editar',class='btn btn-default  btn-lg btn-block')

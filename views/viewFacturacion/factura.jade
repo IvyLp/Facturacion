@@ -1,0 +1,47 @@
+extends ../layout
+block content
+ div#addFactura
+ h2 Facturas
+ table(id='tfacturar',class='table table-hover table-responsive')
+  thead
+   tr(class='active',style='font-weight:bold;')
+    td No Factura
+    td Periodo
+    td Dias
+    td Consumo
+    td Valor consumo
+    td Otros Cobros
+    td Total a Pagar
+    td Nuid
+    td Direccion Predio
+    td Estado
+    td Novedades
+    td Eliminar
+  tbody
+   - for fc in Factura
+    tr
+     td= fc.no_factura
+     td= fc.periodo
+     td= fc.dias_facturados
+     td= fc.consumo
+     td= fc.valor_consumo
+     td= fc.otros
+     td= fc.total_consumo
+     td= fc.nuid
+     td= fc.direccion_predio
+     td= fc.nombre
+     td
+      form(method='get', action='/add/'+fc.no_factura+'/novedad')
+       input(name='_method', value='ADDNOVEDAD', Type='hidden')
+       button(type='submit',class='btn btn-success center-block')
+        span(class='glyphicon glyphicon-plus')
+        span  Novedad
+     td
+      form(method='get', action='/delete/'+fc.no_factura+'/factura')
+       input(name='_method', value='DELETE', Type='hidden')
+       button(type='submit',class='btn btn-danger center-block',onclick='return confirm("¿Estas seguro de Eliminar esta Factura?");')
+        span(class='glyphicon glyphicon-trash') 
+        span  Eliminar
+    
+
+

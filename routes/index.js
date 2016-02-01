@@ -9,6 +9,7 @@ var ciudad;
 
 /* GET home page. */
 router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,traeDepartamentos,traeMunicipios,function(req, res, next) {
+  console.log(acueducto +" " +usuario);
   if(acueducto == 0)
   {
   	ciudad = req.query.Dep;// Atrapa la peticion ajax
@@ -118,8 +119,8 @@ function existeAcueducto(req,res,next)
 {
 	pg.connect(conString,function(err,client,done){
 		client.query('SELECT * FROM SP_EXISTE_ACUEDUCTO()',function(err,result){
-			//try{acueducto = result.rows[0].existe;}  //Local
-			try{acueducto = result.rows[0].sp_existe_acueducto;}	   //Heroku
+			try{acueducto = result.rows[0].sp_existe_acueducto;}  //Local
+			//try{acueducto = result.rows[0].sp_existe_acueducto;}	   //Heroku
 			catch(e){console.error(e);}
 			finally{done();next();}
 		});
@@ -130,8 +131,8 @@ function existeUsuario(req,res,next)
 {
 	pg.connect(conString,function(err,client,done){
 		client.query('SELECT * FROM SP_EXISTE_USUARIO()',function(err,result){
-			//try{usuario = result.rows[0].existe;} //Local
-			try{usuario = result.rows[0]}           //Heroku
+			try{usuario = result.rows[0].sp_existe_usuario;} //Local
+			//try{usuario = result.rows[0]}           //Heroku
 			catch(e){console.error(e);}
 			finally{done();next();}
 		});

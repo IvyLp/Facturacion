@@ -10,9 +10,7 @@ router.get('/viewEmpresa',nocache,muestraInformacion,muestraInformacionAcueducto
   {
     ciudad = req.query.Dep;// Atrapa la peticion ajax
     res.render('viewEmpresa/empresa',{
-  	   Nombre:informacion._nomu,
-       Apellido:informacion._apeu,
-       Acueducto:informacion._noma,
+  	   Session:informacion,
        Empresa:acueducto,
        Representante:representante,
        Departamento:departamento,

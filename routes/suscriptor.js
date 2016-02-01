@@ -15,9 +15,7 @@ router.get('/viewSuscriptor',nocache,muestraInformacion,muestraSuscriptores,func
 	if(req.session.name)
     {
        res.render('viewSuscriptor/suscriptor',{
-  	     Nombre:informacion._nomu,
-         Apellido:informacion._apeu,
-         Acueducto:informacion._noma,
+  	     Session:informacion,
          Suscriptor:suscriptor,        
   	   });
   	}
@@ -38,9 +36,7 @@ router.get('/viewSuscriptor/addSuscriptor',nocache,muestraInformacion,traeDocume
     ConI = req.query.Ci;
     NopI = req.query.Ni;
     res.render('viewSuscriptor/addsuscriptor',{
-      Nombre:informacion._nomu,
-      Apellido:informacion._apeu,
-      Acueducto:informacion._noma,
+      Session:informacion,
       Documento:documento,
       Departamento:departamento,
       Municipio:municipio,
@@ -60,15 +56,40 @@ router.get('/details/:id/suscriptor',nocache,muestraInformacion,muestraSuscripci
   { 
     res.render('viewSuscriptor/detailsSuscriptor',
     {
-     Nombre:informacion._nomu,
-     Apellido:informacion._apeu,
-     Acueducto:informacion._noma,
+     Session:informacion,
      Suscripcion:infosuscriptor
     });
   }
   else res.redirect('/');
 });
 
+router.get('/edit/:id/titular',nocache,muestraInformacion,muestraSuscripcion,traeDepartamentos,traeMunicipios,function(req,res, next){
+  if(req.session.name)
+  {
+    ciudad = req.query.Dep;// Atrapa la peticion ajax
+    res.render('viewSuscriptor/editTitular',{
+      Session:informacion,
+      Suscripcion:infosuscriptor,
+      Departamento:departamento,
+      Municipio:municipio
+    });
+  }
+  else res.redirect('/');
+});
+
+router.get('/edit/:id/nuid',nocache,muestraInformacion,muestraSuscripcion,traeViewRegiones,mostrarTarifa,function(req,res, next){
+  if(req.session.name)
+  {
+    tar = req.query.Tar;
+    res.render('viewSuscriptor/editNuid',{
+      Session:informacion,
+      Suscripcion:infosuscriptor,
+      Region:viewRegiones,
+      Tarifa:tarifa
+    });
+  }
+  else res.redirect('/');
+});
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*METHOD POST*/
 

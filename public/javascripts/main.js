@@ -1,12 +1,13 @@
  $(function(){
 	interaccionPlantilla();
 	ajaxFunctions();
-	
 });
  var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
 ;
 function interaccionPlantilla()
 {
+	$('[data-toggle="popover"]').popover()
+	$('[data-toggle="tooltip"]').tooltip()
 	$(".navegacion").hide();
 	$(".principal").hide();
 	$(".esconde").hide();
@@ -34,6 +35,13 @@ function interaccionPlantilla()
 	$(".formatoFecha").each(function(indice){
 		$(this).text(" "+(mes[new Date($(this).text()).getMonth()])+" "+( new Date($(this).text()).getDate()) +" de "+ (new Date($(this).text()).getYear() + 1900));
 	});
+	$(".formatoFecha2").each(function(indice){
+		var yyyy = (new Date($(this).val()).getYear() + 1900);
+		var m = (new Date($(this).val()).getMonth() + 1) < 10? "0"+(new Date($(this).val()).getMonth() + 1):(new Date($(this).val()).getMonth() + 1);
+		var dd = (new Date($(this).val()).getDate()) < 10? "0"+(new Date($(this).val()).getDate()):(new Date($(this).val()).getDate());
+		$(this).val(yyyy+"-"+m+"-"+dd);
+	});
+
 
  	$('body').on('change','.checkmedidor',function(){
 		if($(this).prop('checked')) $('#infoMedidor input').prop('disabled',false);
@@ -45,6 +53,7 @@ function ajaxFunctions()
 {
 	$('body').on('change','.SelDepartamento',function(){
 		var url = $(this).parents('form').attr('action');
+		console.log(url);
 		var seleccion = $(this).val();
 		ajaxMunicipio(url,seleccion);
 	});

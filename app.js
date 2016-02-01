@@ -16,7 +16,10 @@ var empresa = require('./routes/empresa');
 var usuarios = require('./routes/usuario');
 var suscriptor = require('./routes/suscriptor');
 var recaudo = require('./routes/recaudo');
-var facturacion = require('./routes/consumos');
+var facturacion = require('./routes/facturacion');
+var novedad = require('./routes/novedad');
+
+
 
 var app = express();
 
@@ -44,6 +47,9 @@ app.use('/',usuarios);
 app.use('/',suscriptor);
 app.use('/',recaudo);
 app.use('/',facturacion);
+app.use('/',novedad);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

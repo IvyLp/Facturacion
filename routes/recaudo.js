@@ -8,9 +8,7 @@ router.get('/viewRecaudo',nocache,muestraInformacion,muestraEntidad,function(req
 	if(req.session.name)
 	{
 		res.render('viewRecaudo/entidad',{
-			Nombre:informacion._nomu,
-      Apellido:informacion._apeu,
-      Acueducto:informacion._noma,
+			Session:informacion,
       Entidad:entidad
 		});
 	}

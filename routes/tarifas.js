@@ -8,9 +8,7 @@ router.get('/add/:id/tarifa',nocache,muestraInformacion,traeViewRegiones,traeCla
   if(req.session.name)
   {
     res.render('viewTarifa/tarifa',{
-		  Nombre:informacion._nomu,
-      Apellido:informacion._apeu,
-      Acueducto:informacion._noma,
+		  Session:informacion,
 		  Region:viewRegiones,
       Clase:clases,
       Tarifa:tarifas

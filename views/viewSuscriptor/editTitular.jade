@@ -1,0 +1,53 @@
+extends ../layout
+block content
+ h1 Editar Titular /
+  span(style='color:#cecece;') #{Suscripcion.nombre} #{Suscripcion.apellido}
+ a(href='/viewSuscriptor',style='margin:-60px 10px;float:right;')
+  span(class='glyphicon glyphicon-menu-left')
+  span  Regresar
+ hr
+ form(method='POST',action='/edit/#{Suscripcion.nuid}/titular')
+  table(id='tregional',class='table')
+   tr
+    td Identificacion
+    td
+      input(type='text',value='#{Suscripcion.identificacion}',class='form-control')
+   tr
+    td Nombres
+    td
+     input(type='text',value='#{Suscripcion.nombre}',class='form-control')
+   tr
+    td Apellidos
+    td
+     input(type='text',value='#{Suscripcion.apellido}',class='form-control')
+   tr
+    td Fecha Nacimiento
+    td
+     input(type='text',value='#{Suscripcion.fecha_nac}',class='form-control formatoFecha2')
+   tr
+    td Departamento Residencia
+    td
+     select(id='SelDepartamento',name='ddl_departamentos', class='form-control SelDepartamento')
+      - for d in Departamento
+       option(value='' + d.codd + '')= d.nomd
+   tr
+    td Municipio Residencia
+    td#campoMunicipios
+     select(name='ddl_ciudads', class='form-control ciudad')
+      - for m in Municipio
+       option(value='' + m.codm + '')= m.nomm
+   tr
+    td Direccion Residencia
+    td
+     input(type='text',value='#{Suscripcion.direccion}',class='form-control')
+   tr
+    td Telefono
+    td
+     input(type='text',value='#{Suscripcion.telefono}',class='form-control')
+   tr
+    td Telefono
+    td
+     input(type='text',value='#{Suscripcion.correo}',class='form-control')
+   tr
+    td(colspan='2')
+     input(type='submit', value='Editar',class='btn btn-default  btn-lg btn-block')

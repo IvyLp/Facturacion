@@ -1,0 +1,123 @@
+extends ../layout
+block content
+ div#addFactura
+ h2 Factura:
+  span= Detalle.no_factura
+ div 
+     a(href='/viewFacturas',style='margin:-35px 10px;float:right;')
+      span(class='glyphicon glyphicon-menu-left')
+      span  Regresar   
+ div.row
+  div.col-md-12
+   table(class='table table-bordered table-responsive')
+    tr
+     td.success PERIODO: 
+     td= Detalle.periodo_facturacion
+     td.success MEDIDOR:
+     td= Detalle.codigo_medidor
+     td.success CLASE:
+     td= Detalle.estrato
+     td.success FECHA EXPEDICION:
+     td= Detalle.fecha_expedicion
+     td.success FECHA VENCIMIENTO:
+     td= Detalle.fecha_vencimiento
+ 
+ a(href='/pdf/'+Detalle.no_factura+'',class='btn btn-active',target='_blank')
+  span(class='glyphicon glyphicon-print')
+  span  Imprimir
+ a(href='/print/' + Detalle.no_factura + '',class='btn btn-active',target='_blank')
+  span(class='glyphicon glyphicon-print')
+  span  Imprimir2
+ div.row
+  div.col-md-6
+   h3 Informacion Titular
+   hr
+   p(style='font-size:12pt;')
+    strong  Nuid:  
+    span=   Detalle.nuid
+    br
+    strong  Direccion Predio: 
+    span=   Detalle.direccion
+    hr
+    strong  Documento: 
+    span=   Detalle.cedula_ciudadania
+    br 
+    strong  Titular: 
+    span=   Detalle.nombre_titular
+    br
+    strong  Domicilio:
+    span=   Detalle.direccion_domicilio
+    span  -  
+    span=   Detalle.municipio
+    span  /   
+    span=   Detalle.departamento  
+    br
+    strong  Telefono:
+    span=   Detalle.telefono
+    br
+    strong  Correo:
+    span=   Detalle.correo 
+
+  div.col-md-6
+   h3 Informacion Consumo
+   hr
+   p(style='font-size:12pt;')
+    strong  Dias:  
+    span=   Detalle.dias_facturados      
+    strong  Determinador:   
+    span=   Detalle.determinador_consumo
+    strong  Estado Medidor:  
+    span=   Detalle.estado_medidor 
+    br
+    strong  Lectura Actual:  
+    span=  Detalle.lectura_actual
+    strong  Lectura Anterior:  
+    span=   Detalle.lectura_anterior
+    strong  Consumo:  
+    span=   Detalle.consumo
+    strong  Valor M3:  
+    span=   Detalle.valor_m3 
+    hr 
+    strong  Cargo Fijo(+):    
+    span=   Detalle.cargo_fijo
+    br
+    strong  Valor Consumo(+):    
+    span=   Detalle.valor_consumo
+    br
+    strong  Sub(-)/Con(+) Cargo Fijo:  
+    span=   Detalle.subsidio_cargo_fijo
+    br
+    strong  Sub(-)/Con(+) Valor Consumo:  
+    span=   Detalle.subsidio_valor_consumo
+    hr
+    - for c in Concepto
+     strong=  c._conc 
+     span :   
+     span=   c._val
+     a(href='/delete/'+c._id+'/concepto', style='float:right;')
+      span(class='glyphicon glyphicon-trash')
+      span Eliminar
+     br
+    hr
+    strong Total:  
+    span=  Detalle.total_consumo
+ form(method='POST',action='/add/'+Detalle.no_factura+'/novedad')
+  table(class='table table-bordered table-responsive')
+   tr
+    td 
+     h4 Concepto:
+    td(style='width:40%;')
+     input(class='form-control',name='tb_concepto')
+    td 
+     h4 Valor:
+    td
+     div.form-group
+      div.input-group 
+       div.input-group-addon $
+       input(name='tb_valor',class='form-control',placeholder='0',style='text-align:right')
+    td
+     button(type='submit',class='btn btn-success')
+      span(class='glyphicon glyphicon-plus')
+      span  Agregar Concepto
+   
+ 

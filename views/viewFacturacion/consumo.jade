@@ -1,6 +1,65 @@
 extends ../layout
 block content
  div#addConsumos
- h2 Agregar Consumos
+ h2 Consumos #{Periodo[0]} - #{Periodo[1]}
+ table(id='tfacturar',class='table table-hover table-responsive')
+  thead
+   tr(class='active',style='font-weight:bold;')
+    td Nuid
+    td Medidor
+    td E/medidor
+    td T/medición
+    td L/Act
+    td L/Ant
+    td C/xión
+    td R/xión
+    td R/ción
+    td S/sión
+    td Corte
+    td(style="width:60px;") Dias
+    td Generar
+  tbody 
+   - for fc in Facturar
+    tr
+     form(method='post',action='/add/'+fc.nd+'/factura')
+      td
+       button(type='button' class='btn btn-default' data-toggle='tooltip'  data-placement="right" title=''+fc.dr+'')= fc.nd
+      td
+       if fc.cm
+        span= fc.cm
+       else 
+        span Sin Medidor
+      td
+       select(name='ddl_medidorestado', class='form-control')
+        - for md in Medidor
+         option(value=''+md.ie+'')= md.ne
+      td
+       select(name='ddl_determinador', class='form-control')
+        - for dt in Determinador
+         option(value=''+dt.cd+'')= dt.nd
+      td
+       input(class='form-control',style='text-align:center;',name='tb_lectura')
+      td
+       if fc.lan
+        input(class='form-control',style='text-align:center;',value=''+fc.lan+'',disabled )
+        input(type='hidden', name='tb_lecturaA',class='form-control',value=''+fc.lan+'')
+       else 
+        input(class='form-control',style='text-align:center;',value='0',disabled)
+        input(type='hidden', name='tb_lecturaA',class='form-control',value='0')
+      td
+        input(name='tb_conexion',style='text-align:center;',class='form-control',value='0')
+      td
+        input(name='tb_reconexion',style='text-align:center;',class='form-control',value='0')
+      td
+        input(name='tb_reinstalacion',style='text-align:center;',class='form-control',value='0')
+      td
+        input(name='tb_suspension',style='text-align:center;',class='form-control',value='0')
+      td
+        input(name='tb_corte',style='text-align:center;',class='form-control',value='0')
+      td
+       input(name='tb_dias',style='text-align:center;',class='form-control',value='60')
+      td
+       input(type='submit',class='btn btn-success',value='Generar')
+
 
    

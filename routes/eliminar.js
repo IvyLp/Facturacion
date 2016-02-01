@@ -73,4 +73,24 @@ router.get('/delete/:id/entidad',function(req,res,next){
 	});
 });
 
+router.get('/delete/:id/factura',function(req,res,next){
+	pg.connect(conString,function(err,client,done){
+		client.query('DELETE FROM facturacion WHERE no_factura = $1',[req.params.id],function(err,result){
+			if(err) conString.error(err.message);
+			else console.log(result);
+			res.redirect('/viewFacturas');
+		});
+	});
+});
+
+router.get('/delete/:id/concepto',function(req,res,next){
+	pg.connect(conString,function(err,client,done){
+		client.query('SELECT sp_eliminar_concepto($1)',[req.params.id],function(err,result){
+			if(err) conString.error(err.message);
+			else console.log(result);
+			res.redirect('/viewFacturas');
+		});
+	});
+});
+
 module.exports = router;

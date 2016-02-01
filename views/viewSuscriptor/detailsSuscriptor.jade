@@ -7,6 +7,9 @@ block content
   span  Regresar
  hr
  h3 Titular
+ a(href='/edit/#{Suscripcion.nuid}/titular',style='float:right; margin: -30px 12px; font-size:15px;')
+  span(class='glyphicon glyphicon-edit') 
+  span  Editar
  p(style='text-align:center;font-size:14pt;')
   strong #{Suscripcion.documento}
   span  #{Suscripcion.identificacion}
@@ -33,6 +36,9 @@ block content
   span  #{Suscripcion.correo}
  hr
  h3 Suscripcion
+ a(href='/edit/#{Suscripcion.nuid}/nuid' style='float:right; margin: -30px 12px; font-size:15px;')
+  span(class='glyphicon glyphicon-edit')
+  span  Editar
  p(style='text-align:center;font-size:14pt;')
   strong Nuid:
   span  #{Suscripcion.nuid}

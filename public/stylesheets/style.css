@@ -117,3 +117,7 @@ body
 	margin:10px auto;
 	border: 1px solid #cecece;
 }
+.ull
+{
+	display: inline-block;
+}

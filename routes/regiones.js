@@ -10,9 +10,7 @@ router.get('/viewRegion/region',nocache,muestraInformacion,traeAcueductos,traeDe
   {
     ciudad = req.query.Dep;// Atrapa la peticion ajax
   	res.render('viewRegion/region',{
-      Nombre:informacion._nomu,
-      Apellido:informacion._apeu,
-      Acueducto:informacion._noma,
+      Session:informacion,
       Acueducto1:acueducto1,
       Departamento:departamento,
       Municipio:municipio,

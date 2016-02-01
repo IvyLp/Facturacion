@@ -11,9 +11,7 @@ router.get('/viewUser',nocache,muestraInformacion,muestraUsuario,function(req,re
 	if(req.session.name)
   {
     res.render('viewUsuario/users',{
-  	   Nombre:informacion._nomu,
-       Apellido:informacion._apeu,
-       Acueducto:informacion._noma,
+  	   Session:informacion,
        Usuario:usuario
   	});
   }
@@ -27,9 +25,7 @@ router.get('/viewUser/addUsers',nocache,muestraInformacion,traeDocumentos,traeRo
   {
     cedula = req.query.Usr;// Atrapa la peticion ajax
     res.render('viewUsuario/adduser',{
-      Nombre:informacion._nomu,
-      Apellido:informacion._apeu,
-      Acueducto:informacion._noma,
+      Session:informacion,
       Documento:documento,
       Rol:rol,
       User:infousuario

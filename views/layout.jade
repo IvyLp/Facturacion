@@ -16,7 +16,7 @@ html
        h4 Software Facturación Acueducto
       div.col-md-4
        span(class='glyphicon glyphicon-user iu')
-       div #{Nombre} #{Apellido}
+       div #{Session._nomu} #{Session._apeu}
       div.col-md-2
        a(href='/Logoff') Cerrar Sesion
     div.row
@@ -25,9 +25,11 @@ html
        div(id='facturacion',class='col-md-12 botones_nav')
         span(class='glyphicon glyphicon-list-alt')  
         span  FACTURACION
-       ul.navegacion
+       ul(class='navegacion')
         li
          a(href='/viewConsumos') Consumos
+        li
+         a(href='/viewFacturas') Facturas
       div.row
        div(id='suscriptores',class='col-md-12 botones_nav')
         span(class='glyphicon glyphicon-home')  
@@ -64,12 +66,12 @@ html
         span(class='glyphicon glyphicon-book')  
         span  MANUAL
        ul.navegacion
-        li Manual de Instrucciones 
+        li Manual Usuario 
      div(id='section' class='col-md-10')
       div.row
        div(id='titulo',class='col-md-12')
         span(class='glyphicon glyphicon-tint sp')
-        span #{Acueducto}
+        span #{Session._noma}
       div.row
        div.col-md-12   
         block content
