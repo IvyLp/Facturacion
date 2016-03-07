@@ -1,6 +1,13 @@
  $(function(){
 	interaccionPlantilla();
 	ajaxFunctions();
+	$('#tfacturar, #tsuscriptor').DataTable({
+            "language": {
+               	"url": "Spanish.json"
+				
+             }
+
+            });
 });
  var mes = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
 ;
