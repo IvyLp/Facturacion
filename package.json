@@ -12,6 +12,7 @@
     "debug": "~2.1.1",
     "express": "~4.12.2",
     "express-session": "~1.11.2",
+    "highcharts": "^4.2.4",
     "jade": "~1.9.2",
     "morgan": "~1.5.1",
     "pdfkit": "~0.7.1",

@@ -101,8 +101,8 @@ block content
       tr   
        td Nuid:
        td
-        input(name='tb_nuid',placeholder='', class='form-control ch', data-alert='alert1')
-        div#alert1 
+        input(name='tb_nuid',placeholder='', class='form-control ch',data-route='/viewSuscriptor/addSuscriptor', data-alert='alert1')
+        div#alert1
          if Nuid
           div(class='alert alert-danger alert-dismissible fade in')
            button(type='button',class='close',data-dismiss='alert',aria-label='Close')
@@ -112,14 +112,14 @@ block content
       tr
        td Contrato:
        td
-        input(name='tb_contrato',placeholder='', class='form-control ch', data-alert='alert2')
+        input(name='tb_contrato',placeholder='', class='form-control ch',data-route='/viewSuscriptor/addSuscriptor',data-alert='alert2')
         div#alert2
          if Contrato
           div(class='alert alert-danger alert-dismissible fade in')
            button(type='button',class='close',data-dismiss='alert',aria-label='Close')
             span(aria-hidden='true') &times;
            p Ya existe un contrato asociado con este numero
-      tr 
+      tr(data-route='/viewSuscriptor/addSuscriptor')
        td Igac:
        td
         div.row

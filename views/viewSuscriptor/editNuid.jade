@@ -8,68 +8,91 @@ block content
     hr
     form(method='POST',action='/edit/#{Suscripcion.nuid}/nuid')
         table(id='tregional',class='table')
-            tr
-                td Nuid
-                td(colspan='4')
-                    input(type='text',value='#{Suscripcion.nuid}',class='form-control')
-            tr
-                td Contrato
-                td(colspan='4')
-                    input(type='text',value='#{Suscripcion.contrato}',class='form-control')
-            tr
-                td Igac
-                td
-                    input(type='text',value='#{Suscripcion.sector_igac}',class='form-control')
-                td
-                    input(type='text',value='#{Suscripcion.manz_vere_igac}',class='form-control')
-                td
-                    input(type='text',value='#{Suscripcion.condicion_igac}',class='form-control')
-                td
-                    input(type='text',value='#{Suscripcion.no_predial_igac}',class='form-control')
-            tr
-                td Urm
-                td(colspan='4')
-                    div.col-md-6
-                        input(type="checkbox",name="Ch_urm",value="false",class='form-control check')
-                    div.col-md-6
-                        input(type='number',name='tb_urm',placeholder='cant',class='form-control esconde', style='margin: 3px 0px;',min='0',value='0')
-            tr
-                td Unrm
-                td(colspan='4')
-                    div.col-md-6
-                        input(type="checkbox",name="Ch_urm",value="false",class='form-control check')
-                    div.col-md-6
-                        input(type='number',name='tb_unrm',placeholder='cant',class='form-control esconde', style='margin: 3px 0px;',min='0',value='0')
-            tr
-                td Hogar Sustituto
-                td(colspan='4')
-                    div.col-md-6
-                        input(type='radio',name='rd_h',value='0',checked='checked')
-                        span  No
-                    div.col-md-6
-                        input(type='radio',name='rd_h',value='1')
-                        span  Si
-            tr
-                td Regional
-                td(colspan='4')
-                    select(name='ddl_region', class='form-control SelRegion')
-                        option Selecciona Region
-                        - for r in Region
-                            option(value='' + r.id_region + '')= r.nombre_municipio + ' / ' + r.nombre_departamento
-            tr
-                td Direccion Predio
-                td(colspan='4')
-                    input(type='text',value='#{Suscripcion.direccion_predio}',class='form-control')
-            tr
-                td Tarifa
-                td(colspan='4' id='campoTarifas')
-                    select(name='ddl_tarifa', class='form-control')
-                        - for t in Tarifa
-                            option(value='' + t._id + '')= t._nu
-            tr
-                td Fecha de Registro
-                td(colspan='4')
-                    input(type='text',value='#{Suscripcion.fecha_suscripcion}',class='form-control formatoFecha2')
-            tr
-                td(colspan='5')
-                    input(type='submit', value='Editar',class='btn btn-default  btn-lg btn-block')
+            thead
+                tr
+                    td Nuid
+                    td(colspan='5')
+                        input(name='tb_nuida',type='hidden',value='#{Suscripcion.nuid}',class='form-control ch',data-route='/edit/#{Suscripcion.nuid}/nuid',data-alert='alert1')
+                        input(name='tb_nuid',type='text',value='#{Suscripcion.nuid}',class='form-control ch',data-route='/edit/#{Suscripcion.nuid}/nuid',data-alert='alert1')
+                        div#alert1
+                         if Nuid
+                          div(class='alert alert-danger alert-dismissible fade in')
+                           button(type='button',class='close',data-dismiss='alert',aria-label='Close')
+                            span(aria-hidden='true') &times;
+                           p Ya existe un nuid asociado con este numero
+            tbody
+                tr
+                    td Contrato
+                    td(colspan='5')
+                        input(name='tb_contrato',type='text',value='#{Suscripcion.contrato}',class='form-control ch',data-route='/edit/#{Suscripcion.nuid}/nuid',data-alert='alert2')
+                        div#alert2
+                            if Contrato
+                                div(class='alert alert-danger alert-dismissible fade in')
+                                    button(type='button',class='close',data-dismiss='alert',aria-label='Close')
+                                        span(aria-hidden='true') &times;
+                                    p Ya existe un contrato asociado con este numero
+                tr(data-route='/edit/#{Suscripcion.nuid}/nuid')
+                    td Igac
+                    td
+                        input(name='tb_zonI',type='text',value='#{Suscripcion.zona_igac}',class='form-control igac')
+                    td
+                        input(name='tb_secI',type='text',value='#{Suscripcion.sector_igac}',class='form-control igac')
+                    td
+                        input(name='tb_manI',type='text',value='#{Suscripcion.manz_vere_igac}',class='form-control igac')
+                    td
+                        input(name='tb_conI',type='text',value='#{Suscripcion.condicion_igac}',class='form-control igac')
+                    td
+                        input(name='tb_npredial',type='text',value='#{Suscripcion.no_predial_igac}',class='form-control igac')
+                        div#alert3
+                            if Igac
+                                div(class='alert alert-danger alert-dismissible fade in',style='margin-left: -286px;')
+                                    button(type='button',class='close',data-dismiss='alert',aria-label='Close')
+                                        span(aria-hidden='true') &times;
+                                    p Ya existe un suscriptor con esta nomenclatura Igac
+                tr
+                    td Urm
+                    td(colspan='5')
+                        div.col-md-6
+                            input(type="checkbox",name="Ch_urm",value="true",class='form-control check')
+                        div.col-md-6
+                            input(type='number',name='tb_urm',placeholder='cant',class='form-control esconde', style='margin: 3px 0px;',min='0',value='#{Suscripcion.urm}')
+                tr
+                    td Unrm
+                    td(colspan='5')
+                        div.col-md-6
+                            input(type="checkbox",name="Ch_urm",value="true",class='form-control check')
+                        div.col-md-6
+                            input(type='number',name='tb_unrm',placeholder='cant',class='form-control esconde', style='margin: 3px 0px;',min='0',value='#{Suscripcion.urnm}')
+                tr
+                    td Hogar Sustituto
+                    td(colspan='5')
+                        div.col-md-6
+                            input(type='radio',name='rd_h',value='0',checked='checked')
+                            span  No
+                        div.col-md-6
+                            input(type='radio',name='rd_h',value='1')
+                            span  Si
+                tr
+                    td Regional
+                    td(colspan='5')
+                        select(name='ddl_region', class='form-control SelRegion')
+                            option Selecciona Region
+                            - for r in Region
+                                option(value='' + r.id_region + '')= r.nombre_municipio + ' / ' + r.nombre_departamento
+                tr
+                    td Direccion Predio
+                    td(colspan='4')
+                        input(name='tb_direccions2',type='text',value='#{Suscripcion.direccion_predio}',class='form-control')
+                tr
+                    td Tarifa
+                    td(colspan='5' id='campoTarifas')
+                        select(name='ddl_tarifa', class='form-control')
+                            - for t in Tarifa
+                                option(value='' + t._id + '')= t._nu
+                tr
+                    td Fecha de Registro
+                    td(colspan='5')
+                        input(name='tb_fecha',type='text',value='#{Suscripcion.fecha_suscripcion}',class='form-control formatoFecha2')
+                tr
+                    td(colspan='6')
+                        input(type='submit', value='Editar',class='btn btn-default  btn-lg btn-block')

@@ -9,21 +9,28 @@ block content
  form(method='POST',action='/edit/#{Suscripcion.nuid}/titular')
   table(id='tregional',class='table')
    tr
+    td Documento
+    td
+     select(name='ddl_tipodocs', class='form-control')
+      - for doc in Documento
+       option(value='' + doc.idt + '')= doc.nomt
+   tr
     td Identificacion
     td
-      input(type='text',value='#{Suscripcion.identificacion}',class='form-control')
+      input(type='hidden',name='identificacionActual',value='#{Suscripcion.identificacion}',class='form-control')
+      input(type='text',name='identificacionNueva',value='#{Suscripcion.identificacion}',class='form-control')
    tr
     td Nombres
     td
-     input(type='text',value='#{Suscripcion.nombre}',class='form-control')
+     input(type='text',name='nombre',value='#{Suscripcion.nombre}',class='form-control')
    tr
     td Apellidos
     td
-     input(type='text',value='#{Suscripcion.apellido}',class='form-control')
+     input(type='text',name='apellido',value='#{Suscripcion.apellido}',class='form-control')
    tr
     td Fecha Nacimiento
     td
-     input(type='text',value='#{Suscripcion.fecha_nac}',class='form-control formatoFecha2')
+     input(type='text',name='fechaN',value='#{Suscripcion.fecha_nac}',class='form-control formatoFecha2')
    tr
     td Departamento Residencia
     td
@@ -39,15 +46,15 @@ block content
    tr
     td Direccion Residencia
     td
-     input(type='text',value='#{Suscripcion.direccion}',class='form-control')
+     input(type='text',name='direccion',value='#{Suscripcion.direccion}',class='form-control')
    tr
     td Telefono
     td
-     input(type='text',value='#{Suscripcion.telefono}',class='form-control')
+     input(type='text',name='telefono',value='#{Suscripcion.telefono}',class='form-control')
    tr
-    td Telefono
+    td Correo
     td
-     input(type='text',value='#{Suscripcion.correo}',class='form-control')
+     input(type='text',name='correo',value='#{Suscripcion.correo}',class='form-control')
    tr
     td(colspan='2')
      input(type='submit', value='Editar',class='btn btn-default  btn-lg btn-block')

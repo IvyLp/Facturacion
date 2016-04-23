@@ -84,17 +84,19 @@ function ajaxFunctions()
 	});
 
 	$("body").on('change','.ch',function(){
-       ajaxSuscripcion($(this).val(),$(this).attr('data-alert'))
+       ajaxSuscripcion($(this).val(),$(this).attr('data-route'),$(this).attr('data-alert'))
        $(this).attr('data-alert')
 	});
 
 	$("body").on('change','.igac',function(){
-		var con=[];
+		var con=[],route;
 		$('.igac').each(function(i){
 			if($('.igac').eq(i).val() == '') return false;
 			con[i] = $('.igac').eq(i).val();
+			route = $(this).closest('tr').attr('data-route');
 		});
-		if(con.length == 5) ajaxNopredial(con);
+
+		if(con.length == 5) ajaxNopredial(con, route);
 	});
 
 }
@@ -156,25 +158,27 @@ function ajaxTitular(par)
 	});
 }
 
-function ajaxSuscripcion(par,ruta)
+function ajaxSuscripcion(par,route,element)
 {
+
 	$.ajax({
 		type:'GET',
-		url:'/viewSuscriptor/addSuscriptor',
+		url:route,
 		data:{Sus:par},
 		async: false,
 		success:function(e)
 		{
-			$("#"+ruta).load(location.href+ " #"+ruta);
+			$("#"+element).load(location.href+ " #"+element);
 		}
 	});
 }
 
-function ajaxNopredial(par)
+function ajaxNopredial(par,route)
 {
+	console.log(par+' '+route);
 	$.ajax({
 		type:'GET',
-		url:'/viewSuscriptor/addSuscriptor',
+		url:route,
 		data:{Zi:par[0],
 			  Si:par[1],
 			  Mi:par[2],

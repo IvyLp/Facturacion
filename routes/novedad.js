@@ -63,11 +63,12 @@ router.get('/add/:id/novedad',nocache,muestraInformacion,muestraDetallada,muestr
       // Modificar william            
       //BASE DE DATOS
       
-      doc.font('Heading Font');
+      doc.fontSize(14);
       doc.text("$"+detalleFactura.total_consumo,285,233);
       doc.text("$"+detalleFactura.total_consumo,285,233);
       doc.text("$"+detalleFactura.total_consumo,434,113);
       doc.text("$"+detalleFactura.total_consumo,434,238);
+      doc.fontSize(12);
       doc.text(detalleFactura.no_factura,90,84);
       doc.text(detalleFactura.no_factura,540,84);
       doc.text(detalleFactura.no_factura,540,203);
@@ -76,16 +77,16 @@ router.get('/add/:id/novedad',nocache,muestraInformacion,muestraDetallada,muestr
       doc.text(detalleFactura.nuid,454,203);
       doc.text(detalleFactura.codigo_medidor,386,84);
       doc.text(detalleFactura.nombre_titular,210,53);
-      doc.fontSize(10);
-      doc.text(detalleFactura.nombre_titular,454,158);
-      doc.text(detalleFactura.nombre_titular,454,38);
+      doc.fontSize(9);
+      doc.text(detalleFactura.nombre_titular,454,160);
+      doc.text(detalleFactura.nombre_titular,454,40);
       doc.fontSize(12);
       doc.text(detalleFactura.direccion,214,68);
       doc.fontSize(10);
       doc.text(detalleFactura.direccion,460,53);
       doc.text(detalleFactura.direccion,460,175);
       doc.fontSize(12);
-      doc.text(detalleFactura.periodo_facturacion,80,98);
+      doc.text(detalleFactura.periodo_facturacion,95,98);
       doc.text(detalleFactura.periodo_facturacion,475,189);
       doc.text(detalleFactura.periodo_facturacion,475,69);
       doc.text("$"+detalleFactura.cargo_fijo,75,129);
@@ -105,9 +106,9 @@ router.get('/add/:id/novedad',nocache,muestraInformacion,muestraDetallada,muestr
 
             // TITULOS
       doc.fontSize(12);
-      doc.text('BANCO',445,9);
-      doc.text('ACUEDUCTO',440,128);
-      doc.fontSize(9);
+      doc.text('BANCO',490,9);
+      doc.text('ACUEDUCTO',480,128);
+      doc.font('Times-Roman',9);
       doc.text('FACTURA No:',12,86);
       doc.text('NUID:',164,86);
       doc.text('ESTRATO:',237,86),
@@ -115,27 +116,28 @@ router.get('/add/:id/novedad',nocache,muestraInformacion,muestraDetallada,muestr
       doc.fontSize(7);  
       doc.text('NUID:',432,87);
       doc.text('factura:',511,87);
-      doc.fontSize(7);
+      doc.fontSize(9);
       doc.text('MES FACTURADO:',12,100);
-      doc.font('Times-Roman',9);
-      doc.text('DATOS DEL CONSUMO',200,100);
+      doc.font('Times-Roman',12);
+      doc.text('DATOS DEL CONSUMO',180,100);
       doc.fontSize(9);
       doc.text('LEC.ANTERIOR:',327,100);
-      doc.font('Times-Roman',10);
-      doc.text('TARIFAS GENERALES',30,115);
+      doc.font('Times-Roman',12);
+      doc.text('TARIFAS GENERALES',20,115);
       doc.fontSize(9);
       doc.text('MEDICION POR CONSUMO',162,115);
       doc.text('LEC.ACTUAL',327,115);
       doc.fontSize(11);
-      doc.text('TOTAL A PAGAR',433,98);
+      doc.text('TOTAL A PAGAR',435,98);
       doc.fontSize(9);
       doc.text('CARGO FIJO:',12,130);
       doc.text('MEDICION POR PROMEDIO',162,130);
       doc.text('CONSUMO M3',327,130);
-      doc.text('ACUEDUCTO MAZATAS',435,145);
+      doc.fontSize(10);
+      doc.text('ACUEDUCTO MAZATAS',467,145);
       doc.fontSize(7);
       doc.text('C.BASICO=0 a 20 m3',12,145);
-      doc.fontSize(10);
+      doc.font('Times-Roman',12);
       doc.text('CONCEPTO',210,145);
       doc.text('VALOR',340,145);
       doc.fontSize(7);
@@ -162,11 +164,12 @@ router.get('/add/:id/novedad',nocache,muestraInformacion,muestraDetallada,muestr
       doc.fontSize(10);
       doc.text('TOTAL A PAGAR:',162,233);
       doc.fontSize(11);
-      doc.text('TOTAL A PAGAR',433,218);
-      doc.fontSize(9);
+      doc.text('TOTAL A PAGAR',435,218);
+      doc.font('Times-Roman',9);
       doc.text('NOMBRE:',162,55);
       doc.text('DIRECCION:',162,70);
-      doc.text('ACUEDUCTO MAZATAS',435,25);
+      doc.fontSize(10);
+      doc.text('ACUEDUCTO MAZATAS',467,25);
       doc.fontSize(7);
       doc.text('nombre',432,40);
       doc.text('direccion',432,55);

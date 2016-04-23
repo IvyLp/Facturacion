@@ -43,11 +43,16 @@ router.post('/add/:id/factura',function(req,res,next){
     parseInt(req.body.ddl_determinador),
     parseInt(req.body.tb_lectura),
     parseInt(req.body.tb_lecturaA),
+    parseInt(req.body.tb_conexion),
+    parseInt(req.body.tb_reconexion),
+    parseInt(req.body.tb_reinstalacion),
+    parseInt(req.body.tb_suspension),
+    parseInt(req.body.tb_corte),
     parseInt(req.body.tb_dias)
   ];
   console.log(paramsFactura);
   pg.connect(conString,function(err,client,done){
-    client.query('SELECT sp_generar_factura($1,$2,$3,$4,$5,$6)',paramsFactura,function(err,result){
+    client.query('SELECT sp_generar_factura($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)',paramsFactura,function(err,result){
       try{console.log(result);}
       catch(e){console.error(e);}
       finally{res.redirect('/viewConsumos');}

@@ -61,31 +61,46 @@ block content
    p(style='font-size:12pt;')
     strong  Dias:  
     span=   Detalle.dias_facturados      
-    strong  Determinador:   
+    strong(style='margin-left:20px;')  Determinador:
     span=   Detalle.determinador_consumo
-    strong  Estado Medidor:  
+    strong(style='margin-left:20px;')  Estado Medidor:
     span=   Detalle.estado_medidor 
     br
     strong  Lectura Actual:  
     span=  Detalle.lectura_actual
-    strong  Lectura Anterior:  
+    strong(style='margin-left:20px;')  Lectura Anterior:
     span=   Detalle.lectura_anterior
-    strong  Consumo:  
+    strong(style='margin-left:20px;')  Consumo:
     span=   Detalle.consumo
-    strong  Valor M3:  
-    span=   Detalle.valor_m3 
+    strong(style='margin-left:20px;')  Valor M3:
+    span=   '$'+Detalle.valor_m3
     hr 
     strong  Cargo Fijo(+):    
-    span=   Detalle.cargo_fijo
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.cargo_fijo
     br
     strong  Valor Consumo(+):    
-    span=   Detalle.valor_consumo
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.valor_consumo
     br
-    strong  Sub(-)/Con(+) Cargo Fijo:  
-    span=   Detalle.subsidio_cargo_fijo
+    strong(style='margin-left:20px;')  Conexión(+):
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.conexion
+    br
+    strong(style='margin-left:20px;')  Reconexión(+):
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.reconexion
+    br
+    strong(style='margin-left:20px;')  Reinstalación(+):
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.reinstalacion
+    br
+    strong(style='margin-left:20px;')  Suspensión(+):
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.suspension
+    br
+    strong(style='margin-left:20px;')  Suspensión(+):
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.corte
+    br
+    strong  Sub(-)/Con(+) Cargo Fijo:
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.subsidio_cargo_fijo
     br
     strong  Sub(-)/Con(+) Valor Consumo:  
-    span=   Detalle.subsidio_valor_consumo
+    span(style='float: right;margin-right: 180px;')=   '$'+Detalle.subsidio_valor_consumo
     hr
     - for c in Concepto
      strong=  c._conc 

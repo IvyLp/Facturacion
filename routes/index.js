@@ -16,7 +16,7 @@ router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,tr
    	res.render('viewRegistro/registro',{Departamento:departamento,Municipio:municipio,Documento:documento});
   }
   else
-  { 
+  {
   	if(usuario == 0)
   	{
   		res.render('viewRegistro/registro2',{Rol:rol,Documento:documento});
@@ -24,7 +24,7 @@ router.get('/',nocache,existeAcueducto,existeUsuario,traeRoles,traeDocumentos,tr
   	else
   	{
   		if(req.session.name)res.redirect('/user');
-  		else res.render('index', { Rol: rol, Acu:acueducto, Usu:usuario });			
+  		else res.render('index', { Rol: rol, Acu:acueducto, Usu:usuario });
   	}
   }
 });

@@ -1,4 +1,5 @@
 var express = require('express');
+var crypto = require('crypto'),hash;
 var router = express.Router();
 var pg = require('pg');
 var conString = require('../connect');
@@ -48,13 +49,14 @@ router.post('/viewEmpresa',nocache,function(req,res){
     [
       req.body.tb_ideRA,
       req.body.tb_ideR,
+      hash = crypto.createHmac('sha1', 'iwil2015').update(req.body.tb_ideR).digest('hex'),
       req.body.tb_nomR,
       req.body.tb_apeR,
       req.body.tb_telR,
       req.body.tb_corR
     ];
      pg.connect(conString,function(err,client,done){
-      client.query('SELECT sp_actulizar_representante($1,$2,$3,$4,$5,$6)',paramRepresentante,function(err,result){
+      client.query('SELECT sp_actulizar_representante($1,$2,$3,$4,$5,$6,$7)',paramRepresentante,function(err,result){
         try{console.log(result);}
         catch(e){console.error(e);}
         finally{res.redirect('/viewEmpresa');}

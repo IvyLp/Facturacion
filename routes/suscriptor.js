@@ -63,13 +63,14 @@ router.get('/details/:id/suscriptor',nocache,muestraInformacion,muestraSuscripci
   else res.redirect('/');
 });
 
-router.get('/edit/:id/titular',nocache,muestraInformacion,muestraSuscripcion,traeDepartamentos,traeMunicipios,function(req,res, next){
+router.get('/edit/:id/titular',nocache,muestraInformacion,muestraSuscripcion,traeDocumentos,traeDepartamentos,traeMunicipios,function(req,res, next){
   if(req.session.name)
   {
     ciudad = req.query.Dep;// Atrapa la peticion ajax
     res.render('viewSuscriptor/editTitular',{
       Session:informacion,
       Suscripcion:infosuscriptor,
+      Documento:documento,
       Departamento:departamento,
       Municipio:municipio
     });
@@ -77,7 +78,14 @@ router.get('/edit/:id/titular',nocache,muestraInformacion,muestraSuscripcion,tra
   else res.redirect('/');
 });
 
-router.get('/edit/:id/nuid',nocache,muestraInformacion,muestraSuscripcion,traeViewRegiones,mostrarTarifa,function(req,res, next){
+router.get('/edit/:id/nuid',nocache,muestraInformacion,muestraSuscripcion,traeViewRegiones,mostrarTarifa,existeNuid,existeContrato,existeIgac,function(req,res, next){
+  nuid = req.query.Sus;
+  contrato = req.query.Sus;
+  ZonI = req.query.Zi;
+  SecI = req.query.Si;
+  ManI = req.query.Mi;
+  ConI = req.query.Ci;
+  NopI = req.query.Ni;
   if(req.session.name)
   {
     tar = req.query.Tar;
@@ -85,8 +93,12 @@ router.get('/edit/:id/nuid',nocache,muestraInformacion,muestraSuscripcion,traeVi
       Session:informacion,
       Suscripcion:infosuscriptor,
       Region:viewRegiones,
-      Tarifa:tarifa
+      Tarifa:tarifa,
+      Nuid: infonuid,
+      Contrato:infocontrato,
+      Igac: infoigac
     });
+    console.log(infosuscriptor);
   }
   else res.redirect('/');
 });
@@ -173,6 +185,66 @@ router.post('/viewSuscriptor/addsuscriptor',function(req,res){
 });
 
 
+router.post('/edit/:id/titular',function(req,res, next){
+  var paramsTitular =
+      [
+          req.body.identificacionActual,
+          req.body.identificacionNueva,
+          parseInt(req.body.ddl_tipodocs),
+          req.body.nombre,
+          req.body.apellido,
+          req.body.fechaN,
+          req.body.ddl_ciudads,
+          req.body.direccion,
+          req.body.telefono,
+          req.body.correo
+      ];
+
+  pg.connect(conString,function(err,client,done){
+    client.query('SELECT sp_actualizar_titular($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',paramsTitular,function(err,result){
+      try{console.log(result.rows);}
+      catch(err){console.log(err);}
+      finally
+      {
+        done();
+        res.redirect('/details/'+req.params.id+'/suscriptor');
+      }
+    })
+  });
+});
+
+router.post('/edit/:id/nuid',function(req,res, next){
+  var paramsNuid =
+      [
+        req.body.tb_nuida,
+        req.body.tb_nuid,
+        req.body.tb_contrato,
+        parseInt(req.body.tb_zonI),
+        parseInt(req.body.tb_secI),
+        parseInt(req.body.tb_manI),
+        parseInt(req.body.tb_npredial),
+        parseInt(req.body.tb_conI),
+        req.body.tb_direccions2,
+        parseInt(req.body.tb_urm),
+        parseInt(req.body.tb_unrm),
+        parseInt(req.body.rd_h),
+        parseInt(req.body.ddl_region),
+        parseInt(req.body.ddl_tarifa),
+        req.body.tb_fecha
+      ];
+  pg.connect(conString,function(err,client,done){
+    client.query('SELECT sp_actualizar_nuid($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)',paramsNuid,function(err,result){
+      try{console.log(result.rows);}
+      catch(err){console.log(err);}
+      finally
+      {
+        done();
+        res.redirect('/details/'+req.body.tb_nuid+'/suscriptor');
+      }
+    })
+  });
+});
+
 module.exports = router;
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 function nocache(req, res, next) 
@@ -204,6 +276,7 @@ function muestraSuscriptores(req,res,next)
 		});
 	});
 }
+
 
 function traeDocumentos(req,res,next)
 {
