@@ -5,80 +5,19 @@ block content
    div#reporte1
  div.row
   div.col-md-12
-   div#reporte2
+ div(style='display:none;')
+  - for item in Grafico1
+   div.periodo= item.per
+   div.consumo= item.cons 
  script(type='text/javascript').
-  $(function(){
-
-   $('#reporte1').highcharts({
-    chart: {
-     type: 'column',
-     options3d: {
-      enabled: true,
-      alpha: 0,
-      beta: 0,
-      depth: 20
-     }
-    },
-    title: {
-     text: 'Consumos en metros cubicos'
-    },
-    subtitle: {
-     text: 'Año 2016'
-    },
-    plotOptions: {
-     column: {
-      depth: 25
-     }
-    },
-    xAxis: {
-     categories: Highcharts.getOptions().lang.shortMonths
-    },
-    yAxis: {
-     title: {
-      text: null
-     }
-    },
-    series: [{
-     name: 'Consumos',
-     data: [2, 3, null, 4, 0, 5, 1, 4, 6, 3]
-    }]
+   $(function(){
+    var grafica1 = new column();
+     $('.periodo').each(function(item,value){
+        grafica1.xAxis.categories.push($(this).text());
+     });
+     $('.consumo').each(function(item,value){
+        grafica1.series[0].data.push(parseInt($(this).text()));
+     });
+     $('#reporte1').highcharts(grafica1);
+   
    });
-
-   $('#reporte2').highcharts({
-    chart: {
-     type: 'column',
-     options3d: {
-      enabled: true,
-      alpha: 0,
-      beta: 0,
-      depth: 20
-     }
-    },
-    title: {
-     text: 'Valor consumos metros cubicos'
-    },
-    subtitle: {
-     text: 'Año 2016'
-    },
-    plotOptions: {
-     column: {
-      depth: 25
-     }
-    },
-    colors:['#90ed7d'],
-    xAxis: {
-     categories: Highcharts.getOptions().lang.shortMonths
-    },
-    yAxis: {
-     title: {
-      text: null
-     }
-    },
-    series: [{
-     name: 'Valor',
-     data: [2, 3, null, 4, 0, 5, 1, 4, 6, 3]
-    }]
-   });
-
-
-  });

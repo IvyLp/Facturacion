@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var pg = require('pg');
 var conString = require('../connect');
-var dPerfil,informacion;
+var dPerfil,informacion,grafico1;
 /* GET users listing. */
 
 router.get('/user',direccionaPerfil,function(req,res,next){
@@ -13,12 +13,13 @@ router.get('/user',direccionaPerfil,function(req,res,next){
   else res.redirect('/');
 });
 
-router.get('/user/Admin',nocache,muestraInformacion, function(req, res, next) {
+router.get('/user/Admin',nocache,muestraInformacion,muestraGrafico1, function(req, res, next) {
   if(req.session.name)
   {
   	res.render('viewUser/admin',{
-                                  Session:informacion
-                                });
+      Session:informacion,
+      Grafico1:grafico1
+    });
   }
   else
   {
@@ -55,6 +56,17 @@ function muestraInformacion(req,res,next)
       try{informacion = result.rows[0];}
       catch(e){console.error(e);}
       finally{done();next();}
+    });
+  });
+}
+
+function muestraGrafico1(req,res,next)
+{
+  pg.connect(conString,function(err,client,done){
+    client.query('SELECT *  FROM sp_grafica1()',function(err,result){
+      try{grafico1 = result.rows;}
+      catch(e){console.error(e);}
+      finally{done;next();}
     });
   });
 }
