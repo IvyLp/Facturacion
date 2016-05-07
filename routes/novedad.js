@@ -90,6 +90,7 @@ router.get('/add/:id/novedad',nocache,muestraInformacion,muestraDetallada,muestr
       doc.text(detalleFactura.periodo_facturacion,475,189);
       doc.text(detalleFactura.periodo_facturacion,475,69);
       doc.text("$"+detalleFactura.cargo_fijo,75,129);
+      doc.fontSize(10);
       doc.text("$"+detalleFactura.cargo_fijo,325,160);
       doc.fontSize(10);
       doc.text(detalleFactura.cargo_basico,132,145);
